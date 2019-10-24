@@ -21,7 +21,8 @@
         BACKGROUND_URL = "url('./images/bg.jpg')",
         arrHanHour = ["", "한", "두", "세", "네", "다섯", "여섯", "일곱", "여덟", "아홉", "열", "열한", "열두"],
         arrHanMonth = ["일", "이", "삼", "사", "오", "유", "칠", "팔", "구", "시", "십일", "십이"],
-        arrHanNum = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"];
+        arrHanNum = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"],
+        arrHanDay = ["일", "월", "화", "수", "목", "금", "토"];
 
     /**
      * Updates the date and sets refresh callback on the next day.
@@ -61,11 +62,11 @@
         var date10 = ~~(date / 10);
         var date1 = date % 10;
         if (date10 == 1) {
-            strDate.innerHTML = arrHanMonth[month] + "월 " + "십" + arrHanNum[date1] + "일";
+            strDate.innerHTML = arrHanMonth[month] + "월 " + "십" + arrHanNum[date1] + "일 " + arrHanDay[day] + "요일";
         } else if (date10 != 0) {
-            strDate.innerHTML = arrHanMonth[month] + "월 " + arrHanNum[date10] + "십" + arrHanNum[date1] + "일";
+            strDate.innerHTML = arrHanMonth[month] + "월 " + arrHanNum[date10] + "십" + arrHanNum[date1] + "일 " + arrHanDay[day] + "요일";
         } else {
-            strDate.innerHTML = arrHanMonth[month] + "월 " + arrHanNum[date1] + "일";
+            strDate.innerHTML = arrHanMonth[month] + "월 " + arrHanNum[date1] + "일 " + arrHanDay[day] + "요일";
         }
 
         // If an updateDate timer already exists, clear the previous timer.
