@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://suapapa.net/tizen_hangulwatch" version="1.0.0" height="360" width="360" viewmodes="maximized">
+    <tizen:application id="wgk9g07Akb.hangulwatch" package="wgk9g07Akb" required_version="4.0"/>
+    <author href="http://suapapa.net" email="homin.lee@suapapa.net">Homin Lee</author>
+    <content src="index.html"/>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <icon src="icon.png"/>
+    <name>hangulwatch</name>
+    <tizen:profile name="wearable"/>
+</widget>

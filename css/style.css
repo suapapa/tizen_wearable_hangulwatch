@@ -1,0 +1,76 @@
+body {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+  }
+
+  #watchface {
+	position: absolute;
+	width: 360px;
+	height: 360px;
+	top: 0px;
+	left: 0px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	color: white;
+	background-color: black;
+	line-height: 1.0;
+  }
+
+  .major {
+	color: yellow;
+  }
+
+  .minor {
+	color: gray;
+  }
+
+  #time {
+	position: absolute;
+	width: 80%;
+	height: 70%;
+	top: 10%;
+	left: 10%;
+	/* border: 3px solid green; */
+  }
+
+  #h-str {
+	font-size: 550%;
+	float: left;
+	/* border: 2px solid yellow; */
+  }
+
+  #h-suffix {
+	font-size: 250%;
+	float: left;
+	padding-top: 15%;
+  }
+
+  #m-str {
+	font-size: 550%;
+	float: left;
+  }
+
+  #m-suffix {
+	font-size: 250%;
+	float: left;
+	padding-top: 15%;
+  }
+
+  #ampm-str {
+	font-size: 200%;
+	/* border: 3px solid red; */
+  }
+
+  #date-str {
+	position: absolute;
+	height: 15%;
+	width: 75%;
+	top: 80%;
+	/* padding: auto; */
+	/* border: 3px solid red; */
+	left: 10%;
+	font-size: 200%;
+	float: left;
+  }
