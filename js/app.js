@@ -59,11 +59,11 @@
 
         console.log(month, date, day);
 
-        var date10 = ~~(date / 10);
+        var date10 = parseInt(date / 10);
         var date1 = date % 10;
-        if (date10 == 1) {
+        if (date10 === 1) {
             strDate.innerHTML = arrHanMonth[month] + "월 " + "십" + arrHanNum[date1] + "일 " + arrHanDay[day] + "요일";
-        } else if (date10 != 0) {
+        } else if (date10 !== 0) {
             strDate.innerHTML = arrHanMonth[month] + "월 " + arrHanNum[date10] + "십" + arrHanNum[date1] + "일 " + arrHanDay[day] + "요일";
         } else {
             strDate.innerHTML = arrHanMonth[month] + "월 " + arrHanNum[date1] + "일 " + arrHanDay[day] + "요일";
@@ -103,11 +103,11 @@
         strHours.innerHTML = arrHanHour[hour];
 
         // TODO: 정각 처리
-        var min10 = ~~(minute / 10);
+        var min10 = parseInt(minute / 10);
         var min1 = minute % 10;
-        if (min10 == 1) {
+        if (min10 === 1) {
             strMinutes.innerHTML = "십" + arrHanNum[min1];
-        } else if (min10 != 0) {
+        } else if (min10 !== 0) {
             strMinutes.innerHTML = arrHanNum[min10] + "십" + arrHanNum[min1];
         } else {
             strMinutes.innerHTML = arrHanNum[min1];
