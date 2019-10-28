@@ -98,8 +98,12 @@
             strAmpm.innerHTML = "오전";
         } else {
             strAmpm.innerHTML = "오후";
+        }
+
+        if (hour > 12) {
             hour -= 12;
         }
+
         strHours.innerHTML = arrHanHour[hour];
 
         // TODO: 정각 처리
