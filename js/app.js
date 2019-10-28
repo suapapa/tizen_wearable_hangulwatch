@@ -117,6 +117,12 @@
             strMinutes.innerHTML = arrHanNum[min1];
         }
 
+        var majorNums = document.querySelector("major");
+        if (flagDigital) {
+        	majorNums.style.color = "yellow";
+        } else {
+        	majorNums.style.color = "gray";
+        }
         // TODO: 초침 처리
 
         /*
