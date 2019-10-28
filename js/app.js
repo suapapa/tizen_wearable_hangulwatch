@@ -93,36 +93,53 @@
             hour = datetime.getHours(),
             minute = datetime.getMinutes();
 
+        var timeFace = document.getElementById("time");
+        var fullTimeFace = document.getElementById("time-full");
+
         // TODO: 자정/정오 처리
-        if (hour < 12) {
-            strAmpm.innerHTML = "오전";
+        if (hour === 12 && minute === 0) {
+            fullTimeFace.innerHTML = "정오";
+            timeFace.style.visibility = "hidden";
+            fullTimeFace.style.visibility = "visible";
+        } else if (hour === 0 && minute === 0) {
+            fullTimeFace.innerHTML = "자정";
+            timeFace.style.visibility = "hidden";
+            fullTimeFace.style.visibility = "visible";
         } else {
-            strAmpm.innerHTML = "오후";
+            timeFace.style.visibility = "visible";
+            fullTimeFace.style.visibility = "hidden";
+
+            if (hour < 12) {
+                strAmpm.innerHTML = "오전";
+            } else {
+                strAmpm.innerHTML = "오후";
+            }
+
+            if (hour > 12) {
+                hour -= 12;
+            }
+
+            strHours.innerHTML = arrHanHour[hour];
+
+            // TODO: 정각 처리
+            var min10 = parseInt(minute / 10);
+            var min1 = minute % 10;
+            if (min10 === 1) {
+                strMinutes.innerHTML = "십" + arrHanNum[min1];
+            } else if (min10 !== 0) {
+                strMinutes.innerHTML = arrHanNum[min10] + "십" + arrHanNum[min1];
+            } else {
+                strMinutes.innerHTML = arrHanNum[min1];
+            }
+
+            var majorNums = document.querySelector("major");
+            if (flagDigital) {
+                majorNums.style.color = "yellow";
+            } else {
+                majorNums.style.color = "gray";
+            }
         }
 
-        if (hour > 12) {
-            hour -= 12;
-        }
-
-        strHours.innerHTML = arrHanHour[hour];
-
-        // TODO: 정각 처리
-        var min10 = parseInt(minute / 10);
-        var min1 = minute % 10;
-        if (min10 === 1) {
-            strMinutes.innerHTML = "십" + arrHanNum[min1];
-        } else if (min10 !== 0) {
-            strMinutes.innerHTML = arrHanNum[min10] + "십" + arrHanNum[min1];
-        } else {
-            strMinutes.innerHTML = arrHanNum[min1];
-        }
-
-        var majorNums = document.querySelector("major");
-        if (flagDigital) {
-        	majorNums.style.color = "yellow";
-        } else {
-        	majorNums.style.color = "gray";
-        }
         // TODO: 초침 처리
 
         /*
