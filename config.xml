@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://suapapa.net/tizen_hangulwatch" version="1.0.0" height="360" width="360" viewmodes="maximized">
-    <tizen:application id="wgk9g07Akb.hangulwatch" package="wgk9g07Akb" required_version="4.0" ambient_support="disable"/>
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://suapapa.net/tizen_hangulwatch" version="1.0.0" height="360" width="360" viewmodes="maximized">
+    <tizen:application id="wgk9g07Akb.hangulwatch" package="wgk9g07Akb" required_version="4.0" ambient_support="enable"/>
     <author href="http://suapapa.net" email="homin.lee@suapapa.net">Homin Lee</author>
     <tizen:category name="http://tizen.org/category/wearable_clock"/>
     <content src="index.html"/>
