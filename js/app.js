@@ -16,9 +16,9 @@
 
 (function () {
     var timerUpdateDate = 0,
-        flagDigital = false,
+        isAmbient = false,
         interval,
-        BACKGROUND_URL = "url('./images/bg.jpg')",
+        BACKGROUND_URL = "url('./asset/bg.jpg')",
         arrHanHour = ["", "한", "두", "세", "네", "다섯", "여섯", "일곱", "여덟", "아홉", "열", "열한", "열두"],
         arrHanMonth = ["일", "이", "삼", "사", "오", "유", "칠", "팔", "구", "시", "십일", "십이"],
         arrHanNum = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"],
@@ -56,8 +56,6 @@
                     1;
             }
         }
-
-        console.log(month, date, day);
 
         var date10 = parseInt(date / 10);
         var date1 = date % 10;
@@ -131,17 +129,9 @@
             } else {
                 strMinutes.innerHTML = arrHanNum[min1];
             }
-
-            var majorNums = document.querySelector("major");
-            if (flagDigital) {
-                majorNums.style.color = "yellow";
-            } else {
-                majorNums.style.color = "gray";
-            }
         }
 
         // TODO: 초침 처리
-
         /*
         // Each 0.5 second the visibility of flagConsole is changed.
         if (flagDigital) {
@@ -166,8 +156,11 @@
      * @private
      */
     function initWatch() {
-        flagDigital = true;
+        isAmbient = false;
+        // TODO:
         document.getElementById("watchface").style.backgroundImage = BACKGROUND_URL;
+        document.getElementById("h-str").style.color = "yellow";
+        document.getElementById("m-str").style.color = "yellow";
         interval = setInterval(updateTime, 1000);
     }
 
@@ -176,9 +169,12 @@
      * @private
      */
     function ambientWatch() {
-        flagDigital = false;
+        isAmbient = true;
         clearInterval(interval);
         document.getElementById("digital-body").style.backgroundImage = "none";
+        document.getElementById("h-str").style.color = "gray";
+        document.getElementById("m-str").style.color = "gray";
+        // TODO
         updateTime();
     }
 
@@ -198,16 +194,17 @@
     function bindEvents() {
         // add eventListener for timetick (1min on ambientmode)
         window.addEventListener("timetick", function () {
-            ambientWatch();
+            updateWatch();
         });
 
         // add eventListener for ambientmodechanged
         window.addEventListener("ambientmodechanged", function (e) {
             if (e.detail.ambientMode === true) {
+            	console.log("ambientmodechanged to ambient");
                 // rendering ambient mode case
                 ambientWatch();
-
             } else {
+            	console.log("ambientmodechanged to normal");
                 // rendering normal digital mode case
                 initWatch();
             }
