@@ -176,7 +176,7 @@
 
         // 초침 처리
         if (isAmbient === false) {
-            renderSecondDot(sec);
+            renderSecondDot(second);
         }
     }
 
