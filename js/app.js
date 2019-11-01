@@ -156,14 +156,20 @@
             strHours.innerHTML = arrHanHour[hour];
 
             // TODO: 정각 처리
-            var min10 = parseInt(minute / 10);
-            var min1 = minute % 10;
-            if (min10 === 1) {
-                strMinutes.innerHTML = "십" + arrHanNum[min1];
-            } else if (min10 !== 0) {
-                strMinutes.innerHTML = arrHanNum[min10] + "십" + arrHanNum[min1];
+            if (minute !== 0) {
+                var min10 = parseInt(minute / 10);
+                var min1 = minute % 10;
+                if (min10 === 1) {
+                    strMinutes.innerHTML = "십" + arrHanNum[min1];
+                } else if (min10 !== 0) {
+                    strMinutes.innerHTML = arrHanNum[min10] + "십" + arrHanNum[min1];
+                } else {
+                    strMinutes.innerHTML = arrHanNum[min1];
+                }
+                document.getElementById("m-suffix").style.visibility = "visible";
             } else {
-                strMinutes.innerHTML = arrHanNum[min1];
+                strMinutes.innerHTML = "정각";
+                document.getElementById("m-suffix").style.visibility = "hidden";
             }
         }
 
