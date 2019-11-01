@@ -15,7 +15,9 @@
  */
 
 (function () {
-    var timerUpdateDate = 0,
+    var canvas,
+        ctx,
+        timerUpdateDate = 0,
         isAmbient = false,
         interval,
         BACKGROUND_URL = "url('./asset/bg.jpg')",
@@ -24,11 +26,44 @@
         arrHanNum = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"],
         arrHanDay = ["일", "월", "화", "수", "목", "금", "토"];
 
+
+    function renderDot(centerX, centerY, radius, colorFill, angle) {
+        'use strict';
+
+        ctx.save();
+        // Assign the center of the clock to the middle of the canvas
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.rotate(angle);
+
+        // Render 4 dots in a circle
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        if (colorFill) {
+            ctx.fillStyle = colorFill;
+            ctx.fill();
+        }
+        ctx.closePath();
+
+        ctx.restore();
+    }
+
+    function renderSecondDot(sec) {
+        if (sec > 60) {
+            sec -= 60;
+        }
+        var angle = (2 * Math.PI * sec) / 60;
+        //console.log(sec, angle);
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        renderDot(0, -(canvas.width / 2) * 0.9, 15, "blue", angle);
+    }
+
     /**
-     * Updates the date and sets refresh callback on the next day.
-     * @private
-     * @param {number} prevDay - date of the previous day
-     */
+	 * Updates the date and sets refresh callback on the next day.
+	 *
+	 * @private
+	 * @param {number}
+	 *            prevDay - date of the previous day
+	 */
     function updateDate(prevDay) {
         var datetime = tizen.time.getCurrentDateTime(),
             nextInterval,
@@ -89,7 +124,8 @@
 
         var datetime = tizen.time.getCurrentDateTime(),
             hour = datetime.getHours(),
-            minute = datetime.getMinutes();
+            minute = datetime.getMinutes(),
+            sec = datetime.getSeconds();
 
         var timeFace = document.getElementById("time");
         var fullTimeFace = document.getElementById("time-full");
@@ -132,6 +168,10 @@
         }
 
         // TODO: 초침 처리
+        if (isAmbient === false) {
+            renderSecondDot(sec);
+        }
+        // renderDot(0, 0, 20, "blue");
         /*
         // Each 0.5 second the visibility of flagConsole is changed.
         if (flagDigital) {
@@ -200,11 +240,11 @@
         // add eventListener for ambientmodechanged
         window.addEventListener("ambientmodechanged", function (e) {
             if (e.detail.ambientMode === true) {
-            	console.log("ambientmodechanged to ambient");
+                console.log("ambientmodechanged to ambient");
                 // rendering ambient mode case
                 ambientWatch();
             } else {
-            	console.log("ambientmodechanged to normal");
+                console.log("ambientmodechanged to normal");
                 // rendering normal digital mode case
                 initWatch();
             }
@@ -229,6 +269,11 @@
      * @private
      */
     function init() {
+        canvas = document.querySelector("#canvas");
+        ctx = canvas.getContext("2d");
+        canvas.width = document.body.clientWidth;
+        canvas.height = canvas.width;
+
         initWatch();
         updateDate(0);
 
