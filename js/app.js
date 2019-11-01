@@ -113,19 +113,20 @@
         }, nextInterval);
     }
 
-    /**
-     * Updates the current time.
-     * @private
-     */
     function updateTime() {
-        var strHours = document.getElementById("h-str"),
-            strMinutes = document.getElementById("m-str"),
-            strAmpm = document.getElementById("ampm-str");
-
         var datetime = tizen.time.getCurrentDateTime(),
             hour = datetime.getHours(),
             minute = datetime.getMinutes(),
             sec = datetime.getSeconds();
+
+        renderTime(hour, minute, sec);
+    }
+
+    function renderTime(hour, minute, second) {
+        var strHours = document.getElementById("h-str"),
+            strMinutes = document.getElementById("m-str"),
+            strAmpm = document.getElementById("ampm-str");
+
 
         var timeFace = document.getElementById("time");
         var fullTimeFace = document.getElementById("time-full");
@@ -173,27 +174,10 @@
             }
         }
 
-        // TODO: 초침 처리
+        // 초침 처리
         if (isAmbient === false) {
             renderSecondDot(sec);
         }
-        // renderDot(0, 0, 20, "blue");
-        /*
-        // Each 0.5 second the visibility of flagConsole is changed.
-        if (flagDigital) {
-            if (flagConsole) {
-                strConsole.style.visibility = "visible";
-                flagConsole = false;
-            } else {
-                strConsole.style.visibility = "hidden";
-                flagConsole = true;
-            }
-        }
-        else {
-            strConsole.style.visibility = "visible";
-            flagConsole = false;
-        }
-        */
     }
 
     /**
@@ -218,10 +202,11 @@
         isAmbient = true;
         clearInterval(interval);
         document.getElementById("digital-body").style.backgroundImage = "none";
-        document.getElementById("h-str").style.color = "gray";
-        document.getElementById("m-str").style.color = "gray";
+        document.getElementById("h-str").style.color = "white";
+        document.getElementById("m-str").style.color = "white";
         // TODO
         updateTime();
+        updateDate(0);
     }
 
     /**
