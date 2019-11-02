@@ -125,20 +125,21 @@
     function renderTime(hour, minute, second) {
         var strHours = document.getElementById("h-str"),
             strMinutes = document.getElementById("m-str"),
-            strAmpm = document.getElementById("ampm-str");
-
-
-        var timeFace = document.getElementById("time");
-        var fullTimeFace = document.getElementById("time-full");
+            strAmpm = document.getElementById("ampm-str"),
+            strMinUnit = document.getElementById("m-suffix"),
+            timeFace = document.getElementById("time"),
+            fullTimeFace = document.getElementById("time-full");
 
         // TODO: 자정/정오 처리
         if (hour === 12 && minute === 0) {
             fullTimeFace.innerHTML = "정오";
             timeFace.style.visibility = "hidden";
+            strMinUnit.style.visibility = "hidden";
             fullTimeFace.style.visibility = "visible";
         } else if (hour === 0 && minute === 0) {
             fullTimeFace.innerHTML = "자정";
             timeFace.style.visibility = "hidden";
+            strMinUnit.style.visibility = "hidden";
             fullTimeFace.style.visibility = "visible";
         } else {
             timeFace.style.visibility = "visible";
@@ -167,10 +168,10 @@
                 } else {
                     strMinutes.innerHTML = arrHanNum[min1];
                 }
-                document.getElementById("m-suffix").style.visibility = "visible";
+                strMinUnit.style.visibility = "visible";
             } else {
                 strMinutes.innerHTML = "정각";
-                document.getElementById("m-suffix").style.visibility = "hidden";
+                strMinUnit.style.visibility = "hidden";
             }
         }
 
