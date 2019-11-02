@@ -130,7 +130,6 @@
             timeFace = document.getElementById("time"),
             fullTimeFace = document.getElementById("time-full");
 
-        // TODO: 자정/정오 처리
         if (hour === 12 && minute === 0) {
             fullTimeFace.innerHTML = "정오";
             timeFace.style.visibility = "hidden";
@@ -157,7 +156,7 @@
 
             strHours.innerHTML = arrHanHour[hour];
 
-            // TODO: 정각 처리
+            // 정각 처리
             if (minute !== 0) {
                 var min10 = parseInt(minute / 10);
                 var min1 = minute % 10;
@@ -178,6 +177,8 @@
         // 초침 처리
         if (isAmbient === false) {
             renderSecondDot(second);
+        } else {
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         }
     }
 
@@ -202,7 +203,7 @@
     function ambientWatch() {
         isAmbient = true;
         clearInterval(interval);
-        document.getElementById("digital-body").style.backgroundImage = "none";
+        document.getElementById("watchface").style.backgroundImage = "none";
         document.getElementById("h-str").style.color = "white";
         document.getElementById("m-str").style.color = "white";
         // TODO
