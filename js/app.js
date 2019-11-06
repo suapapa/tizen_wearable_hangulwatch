@@ -24,7 +24,9 @@
         arrHanHour = ["영", "한", "두", "세", "네", "다섯", "여섯", "일곱", "여덟", "아홉", "열", "열한", "열두"],
         arrHanMonth = ["일", "이", "삼", "사", "오", "유", "칠", "팔", "구", "시", "십일", "십이"],
         arrHanNum = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"],
-        arrHanDay = ["일", "월", "화", "수", "목", "금", "토"];
+        arrHanDay = ["일", "월", "화", "수", "목", "금", "토"],
+        colorMajor = "yellow",
+        colorMinor = "gray";
 
 
     function renderDot(centerX, centerY, radius, colorFill, angle) {
@@ -55,11 +57,11 @@
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         for (i = 0; i < 4; i++) {
             var ang = ((2 * Math.PI) / 4) * i;
-            renderDot(0, -(canvas.width / 2) * 0.9, (canvas.width / 2) * 0.02, "gray", ang);
+            renderDot(0, -(canvas.width / 2) * 0.9, (canvas.width / 2) * 0.02, colorMinor, ang);
         }
 
         var angle = (2 * Math.PI * sec) / 60;
-        renderDot(0, -(canvas.width / 2) * 0.9, (canvas.width / 2) * 0.07, "yellow", angle);
+        renderDot(0, -(canvas.width / 2) * 0.9, (canvas.width / 2) * 0.07, colorMajor, angle);
     }
 
     /**
@@ -196,10 +198,19 @@
      */
     function initWatch() {
         isAmbient = false;
-        // TODO:
+
         document.getElementById("watchface").style.backgroundImage = BACKGROUND_URL;
-        document.getElementById("h-str").style.color = "yellow";
-        document.getElementById("m-str").style.color = "yellow";
+
+        var majorSections = document.querySelectorAll(".major");
+        for (i = 0; i < majorSections.length; i++) {
+            majorSections.item(i).style.color = colorMajor;
+        }
+
+        var minorSections = document.querySelectorAll(".minor");
+        for (i = 0; i < minorSections.length; i++) {
+            minorSections.item(i).style.color = colorMinor;
+        }
+
         interval = setInterval(updateTime, 1000);
     }
 
