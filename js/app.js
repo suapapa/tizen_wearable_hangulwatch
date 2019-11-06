@@ -168,8 +168,10 @@
                     strMinutes.innerHTML = arrHanNum[min1];
                 }
                 strMinUnit.style.visibility = "visible";
+                strMinUnit.innerHTML = "분";
             } else {
                 strMinutes.innerHTML = "정각";
+                strMinUnit.innerHTML = "";
                 strMinUnit.style.visibility = "hidden";
             }
         }
