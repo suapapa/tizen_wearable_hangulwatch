@@ -51,10 +51,15 @@
         if (sec > 60) {
             sec -= 60;
         }
-        var angle = (2 * Math.PI * sec) / 60;
         //console.log(sec, angle);
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-        renderDot(0, -(canvas.width / 2) * 0.9, 15, "white", angle);
+        for (i = 0; i < 4; i++) {
+            var ang = ((2 * Math.PI) / 4) * i;
+            renderDot(0, -(canvas.width / 2) * 0.9, (canvas.width / 2) * 0.02, "gray", ang);
+        }
+
+        var angle = (2 * Math.PI * sec) / 60;
+        renderDot(0, -(canvas.width / 2) * 0.9, (canvas.width / 2) * 0.07, "yellow", angle);
     }
 
     /**
