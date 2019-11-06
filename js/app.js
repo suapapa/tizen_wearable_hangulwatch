@@ -54,7 +54,7 @@
         var angle = (2 * Math.PI * sec) / 60;
         //console.log(sec, angle);
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-        renderDot(0, -(canvas.width / 2) * 0.9, 15, "blue", angle);
+        renderDot(0, -(canvas.width / 2) * 0.9, 15, "white", angle);
     }
 
     /**
