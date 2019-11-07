@@ -20,12 +20,15 @@
         timerUpdateDate = 0,
         isAmbient = false,
         interval,
+        doubleTapTimer,
         BACKGROUND_URL = "url('./asset/bg.jpg')",
         arrHanHour = ["영", "한", "두", "세", "네", "다섯", "여섯", "일곱", "여덟", "아홉", "열", "열한", "열두"],
         arrHanMonth = ["일", "이", "삼", "사", "오", "유", "칠", "팔", "구", "시", "십일", "십이"],
         arrHanNum = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"],
         arrHanDay = ["일", "월", "화", "수", "목", "금", "토"],
-        colorMajor = "yellow",
+        colorIdx = 0,
+        arrColorMajor = ["yellow", "blue", "red"],
+        colorMajor = arrColorMajor[colorIdx],
         colorMinor = "gray";
 
 
@@ -55,6 +58,7 @@
         }
         //console.log(sec, angle);
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        var i;
         for (i = 0; i < 4; i++) {
             var ang = ((2 * Math.PI) / 4) * i;
             renderDot(0, -(canvas.width / 2) * 0.9, (canvas.width / 2) * 0.02, colorMinor, ang);
@@ -197,7 +201,13 @@
      * @private
      */
     function initWatch() {
+        var i;
         isAmbient = false;
+
+        canvas = document.querySelector("#canvas");
+        ctx = canvas.getContext("2d");
+        canvas.width = document.body.clientWidth;
+        canvas.height = canvas.width;
 
         document.getElementById("watchface").style.backgroundImage = BACKGROUND_URL;
 
@@ -268,6 +278,33 @@
             }
         });
 
+
+        document.getElementById("watchface").addEventListener("touchstart", function (e) {
+
+            if (doubleTapTimer == null) {
+                doubleTapTimer = setTimeout(function () {
+                    doubleTapTimer = null;
+                    console.log("single tap");
+                    // handle single tap
+                }, 500);
+            } else {
+                clearTimeout(doubleTapTimer);
+                doubleTapTimer = null;
+                console.log("double tap");
+                // handle double tap
+                colorIdx += 1;
+                colorIdx %= arrColorMajor.length;
+                colorMajor = arrColorMajor[colorIdx];
+
+                var majorSections = document.querySelectorAll(".major");
+                for (i = 0; i < majorSections.length; i++) {
+                    majorSections.item(i).style.color = colorMajor;
+                }
+
+                updateWatch();
+            }
+        });
+
         // add event listeners to update watch screen when the time zone is changed.
         tizen.time.setTimezoneChangeListener(function () {
             updateWatch();
@@ -280,11 +317,6 @@
      * @private
      */
     function init() {
-        canvas = document.querySelector("#canvas");
-        ctx = canvas.getContext("2d");
-        canvas.width = document.body.clientWidth;
-        canvas.height = canvas.width;
-
         initWatch();
         updateDate(0);
 
