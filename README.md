@@ -16,3 +16,6 @@ Run Tizen Studio then `File` -> `Open Projects From File System...` then choose 
 
 # Run on real device
 TBD
+
+# License
+FREE
