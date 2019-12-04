@@ -1,4 +1,5 @@
 # HangulWatch
+![icon](icon.png)
 겔럭시 워치 용 워치페이스, 한글손목시계.
 
 # Download and Import
