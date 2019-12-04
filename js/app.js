@@ -79,9 +79,9 @@
         var datetime = tizen.time.getCurrentDateTime(),
             nextInterval,
             strDate = document.getElementById("date-str"),
-            day = datetime.getDay(),
-            date = datetime.getDate(),
-            month = datetime.getMonth();
+            day = 1,
+            date = 2,
+            month = 0;
 
         // Check the update condition.
         // if prevDate is '0', it will always update the date.
@@ -126,9 +126,9 @@
 
     function updateTime() {
         var datetime = tizen.time.getCurrentDateTime(),
-            hour = datetime.getHours(),
-            minute = datetime.getMinutes(),
-            sec = datetime.getSeconds();
+            hour = 15,
+            minute = 04,
+            sec = 5;
 
         renderTime(hour, minute, sec);
     }
