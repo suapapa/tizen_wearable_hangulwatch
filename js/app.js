@@ -209,7 +209,7 @@
         canvas.width = document.body.clientWidth;
         canvas.height = canvas.width;
 
-        document.getElementById("watchface").style.backgroundImage = BACKGROUND_URL;
+        // document.getElementById("watchface").style.backgroundImage = BACKGROUND_URL;
 
         var majorSections = document.querySelectorAll(".major");
         for (i = 0; i < majorSections.length; i++) {
