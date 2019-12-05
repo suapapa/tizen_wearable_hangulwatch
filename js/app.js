@@ -21,7 +21,7 @@
         isAmbient = false,
         interval,
         doubleTapTimer,
-        BACKGROUND_URL = "url('./asset/bg.jpg')",
+        // BACKGROUND_URL = "url('./asset/bg.jpg')",
         arrHanHour = ["영", "한", "두", "세", "네", "다섯", "여섯", "일곱", "여덟", "아홉", "열", "열한", "열두"],
         arrHanMonth = ["일", "이", "삼", "사", "오", "유", "칠", "팔", "구", "시", "십일", "십이"],
         arrHanNum = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"],
@@ -279,9 +279,8 @@
         });
 
 
-        document.getElementById("watchface").addEventListener("touchstart", function (e) {
-
-            if (doubleTapTimer == null) {
+        document.getElementById("watchface").addEventListener("touchstart", function () {
+            if (doubleTapTimer === null) {
                 doubleTapTimer = setTimeout(function () {
                     doubleTapTimer = null;
                     console.log("single tap");
@@ -296,6 +295,7 @@
                 colorIdx %= arrColorMajor.length;
                 colorMajor = arrColorMajor[colorIdx];
 
+                var i;
                 var majorSections = document.querySelectorAll(".major");
                 for (i = 0; i < majorSections.length; i++) {
                     majorSections.item(i).style.color = colorMajor;
