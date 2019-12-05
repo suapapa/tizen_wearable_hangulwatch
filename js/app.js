@@ -27,7 +27,7 @@
         arrHanNum = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"],
         arrHanDay = ["일", "월", "화", "수", "목", "금", "토"],
         colorIdx = 0,
-        arrColorMajor = ["yellow", "blue", "red"],
+        arrColorMajor = ["#F2A0DC", "#363ED9", "#1FBF64", "#F2B705", "#F25D27"],
         colorMajor = arrColorMajor[colorIdx],
         colorMinor = "gray";
 
